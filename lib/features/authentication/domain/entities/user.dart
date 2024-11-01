@@ -10,13 +10,13 @@ class User extends Equatable {
 
   const User.empty()
       : this(
-          id: 1,
+          id: "1",
           name: '_empty.name',
           createdAt: '_empty.createdAt',
           avatar: '_empty.avatar',
         );
 
-  final int id;
+  final String id;
   final String name;
   final String createdAt;
   final String avatar;

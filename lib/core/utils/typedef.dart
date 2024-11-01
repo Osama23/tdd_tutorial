@@ -7,3 +7,5 @@ import 'package:tdd_tutorial/core/errors/failure.dart';
 typedef ResultVoid = Future<Either<Failure, void>>;
 
 typedef ResultFuture<T> = Future<Either<Failure, T>>;
+
+typedef DataMap = Map<String, dynamic>;

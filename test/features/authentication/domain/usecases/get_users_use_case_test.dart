@@ -27,19 +27,19 @@ void main() {
     getUsersUseCase = GetUsersUseCase(repository);
   });
 
-  final tResponse = [const User.empty()];
+  final tResponse = [const User.empty(),];
 
   test('Should call the repository [MockAuthenticationRepository.getUsers] and return List<User>', () async {
 
-    when(() => repository.getUsers()).thenAnswer((_) async => Right(tResponse));
+    when(() => repository.getUsers(),).thenAnswer((_) async => Right(tResponse),);
 
     // Act
     final result = await getUsersUseCase();
 
     // Assert
-    expect(result, equals(Right<dynamic, List<User>> (tResponse)));
+    expect(result, equals(Right<dynamic, List<User>> (tResponse),),);
     // This means that the repository get users has been called and it called only one time
-    verify(() => repository.getUsers()).called(1);
+    verify(() => repository.getUsers(),).called(1);
 
     verifyNoMoreInteractions(repository);
   });
