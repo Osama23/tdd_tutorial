@@ -17,9 +17,16 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required String createdAt, required String name,
     required String avatar}) async {
 
+    // ***** Steps to produce
+    // 1- Test Driven development
+    // 2- call the remote data source
+    // 3- check if the method return the right data
+    // 4- check if remote data source throws an exception, we return a failure
+    // return response;
+
     final response = await authenticationRemoteDataSource.createUser(
         createdAt: createdAt, name: name, avatar: avatar,);
-    // return response;
+
     throw UnimplementedError();
   }
 
