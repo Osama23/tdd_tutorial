@@ -1,5 +1,6 @@
 
 import 'package:equatable/equatable.dart';
+import 'package:tdd_tutorial/core/errors/exceptions.dart';
 
 abstract class Failure extends Equatable {
 
@@ -12,7 +13,10 @@ abstract class Failure extends Equatable {
   List<Object?> get props => [message, statusCode,];
 }
 
-class ApiFailure extends Failure {
-  const ApiFailure({required super.message, required super.statusCode,});
+class APIFailure extends Failure {
+  const APIFailure({required super.message, required super.statusCode,});
 
+  // *** this.will remove passing the values directly
+  APIFailure.fromException(APIException exception) :
+        this(message: exception.message, statusCode: exception.statusCode,);
 }

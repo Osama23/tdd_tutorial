@@ -1,5 +1,6 @@
 
 import 'package:dartz/dartz.dart';
+import 'package:tdd_tutorial/core/errors/exceptions.dart';
 import 'package:tdd_tutorial/core/errors/failure.dart';
 import 'package:tdd_tutorial/core/utils/typedef.dart';
 import 'package:tdd_tutorial/features/authentication/data/datasources/authentication_remote_data_source.dart';
@@ -14,8 +15,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
   @override
   ResultVoid createUser({
-    required String createdAt, required String name,
-    required String avatar}) async {
+    required String createdAt, 
+    required String name,
+    required String avatar,
+  }) async {
 
     // ***** Steps to produce
     // 1- Test Driven development
@@ -24,18 +27,27 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     // 4- check if remote data source throws an exception, we return a failure
     // return response;
 
-    final response = await authenticationRemoteDataSource.createUser(
+    try {
+      await authenticationRemoteDataSource.createUser(
         createdAt: createdAt, name: name, avatar: avatar,);
 
-    throw UnimplementedError();
+      return const Right(null);
+    } on APIException catch(e) {
+      // return Left(ApiFailure(message: e.message, statusCode: e.statusCode,),);
+      return Left(APIFailure.fromException(e));
+    }
   }
 
   @override
   Future<Either<Failure, List<User>>> getUsers() async {
-    final response = await authenticationRemoteDataSource.getUsers();
+    try {
+      final response = await authenticationRemoteDataSource.getUsers();
+      return Right(response);
 
-    // return response;
-    throw UnimplementedError();
+    } on APIException catch(e) {
+      // return Left(ApiFailure(message: e.message, statusCode: e.statusCode,),);
+      return Left(APIFailure.fromException(e));
+    }
   }
 
 }

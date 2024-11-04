@@ -12,3 +12,4 @@ abstract class AuthenticationRemoteDataSource {
 
   Future<List<UserModel>> getUsers();
 }
+
