@@ -19,5 +19,5 @@ Future<void> init() async {
       () => AuthenticationRepositoryImpl(sl())); // Domain layer
   sl.registerLazySingleton<AuthenticationRemoteDataSource>(
       () => AuthenticationRemoteDataSourceImpl(sl())); // Data layer To External Storage
-  sl.registerLazySingleton(() => http.Client.new);
+  sl.registerLazySingleton(() => http.Client());
 }

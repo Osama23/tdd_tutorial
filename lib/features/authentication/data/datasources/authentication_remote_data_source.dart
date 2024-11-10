@@ -19,7 +19,7 @@ abstract class AuthenticationRemoteDataSource {
 }
 
 const kCreateUserEndpoint = '/test-api/users';
-const kGetUsersEndpoint = '/test-api/user';
+const kGetUsersEndpoint = '/test-api/users';
 
 class AuthenticationRemoteDataSourceImpl implements AuthenticationRemoteDataSource {
   const AuthenticationRemoteDataSourceImpl(this._client);
@@ -37,6 +37,9 @@ class AuthenticationRemoteDataSourceImpl implements AuthenticationRemoteDataSour
     try{
       final response = await _client.post(
         Uri.parse('$kBaseUrl$kCreateUserEndpoint'),
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: jsonEncode({
           'createdAt': createdAt,
           'name': name,
